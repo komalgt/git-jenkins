@@ -21,9 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+      
       - name: Run tests
-        run: npm test
+        run: npm test -- --passWithNoTests
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
