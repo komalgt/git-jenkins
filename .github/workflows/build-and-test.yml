@@ -3,40 +3,25 @@ name: Node Build and Test
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'build-and-test.yml'
-      - 'git-jenkins/.github/workflows/build-and-test.yml'
   pull_request:
-    paths:
-      - 'build-and-test.yml'
-      - 'git-jenkins/.github/workflows/build-and-test.yml'
+  workflow_dispatch:
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout code
       - name: Checkout source
         uses: actions/checkout@v4
-
-      # 2. Set up Node.js (choose your version)
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      # 3. Install dependencies (just like Jenkins npm install)
       - name: Install dependencies
         run: npm install
-
-      # 4. Run tests
       - name: Run tests
         env:
           JEST_JUNIT_OUTPUT: test-results.xml
         run: npx jest --ci
-
-      # 5. Upload test output
       - name: Upload test output
         uses: actions/upload-artifact@v4
         with:
