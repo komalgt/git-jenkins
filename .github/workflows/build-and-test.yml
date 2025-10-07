@@ -1,28 +1,31 @@
-name: Node Build and Test
+name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout source
+      - name: Checkout source code
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '18'   # You can adjust this version as needed
+
       - name: Install dependencies
         run: npm install
+
       - name: Run tests
-        env:
-          JEST_JUNIT_OUTPUT: test-results.xml
-        run: npx jest --ci
-      - name: Upload test output
+        run: npm test
+
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
           name: test-results
