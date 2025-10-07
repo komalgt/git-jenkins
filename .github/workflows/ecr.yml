@@ -3,14 +3,17 @@ name: Build and Push Docker Image to AWS ECR
 on:
   push:
     branches: [ main ]
+    path:
+    - ecr.yml
+    - .github/workflows/ecr.yml
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     env:
-      AWS_REGION: us-west-2                # Set region
-      ECR_REPOSITORY: my-ecr-repo          # Set ECR repo name
+      AWS_REGION: eu-north-1             
+      ECR_REPOSITORY: ecr_jenkins        
 
     steps:
       - name: Checkout code
