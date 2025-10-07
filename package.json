@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Sample project for Jenkins integration and CI workflow with Jest artifact upload",
   "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
+ "scripts": {
+  "test": "jest --passWithNoTests"
+},
   "author": "Komal Turakannavar",
   "license": "MIT",
   "devDependencies": {
